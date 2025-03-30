@@ -3,7 +3,6 @@ plugins {
     id 'maven-publish'
 }
 
-
 android {
     namespace 'com.example.supportlibrary'
     compileSdk 35
@@ -24,6 +23,12 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
+    }
+}
+
+tasks.register('prepareArtifacts') {
+    doLast {
+        println("Preparing artifacts for publishing...")
     }
 }
 
@@ -50,6 +55,10 @@ afterEvaluate {
             }
         }
 
+    }
+
+    tasks.named("publishBarPublicationToMavenLocal") {
+        dependsOn tasks.named("bundleReleaseAar")
     }
 }
 
