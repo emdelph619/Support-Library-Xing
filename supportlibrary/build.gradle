@@ -3,6 +3,7 @@ plugins {
     id 'maven-publish'
 }
 
+
 android {
     namespace 'com.example.supportlibrary'
     compileSdk 35
@@ -26,27 +27,30 @@ android {
     }
 }
 
-publishing {
-    publications {
-        bar(MavenPublication) {
-            groupId = "com.example"
-            artifactId = "supportlibrary"
-            version = "1.0.0"
-            artifact("$buildDir/outputs/aar/supportlibrary-release.aar")
-        }
-    }
-
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/emdelph619/Support-Library-Xing")
-            credentials {
-                username = "emdelph619"
-                password = System.getenv("GITHUB_TOKEN")
+afterEvaluate {
+    publishing {
+        publications {
+            bar(MavenPublication) {
+                groupId = "com.github.emdelph619"
+                artifactId = "supportlibrary"
+                version = "1.0.0"
+                artifact("$buildDir/outputs/aar/supportlibrary-release.aar")
             }
         }
-    }
 
+
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/emdelph619/Support-Library-Xing")
+                credentials {
+                    username = "emdelph619"
+                    password = System.getenv("GITHUB_TOKEN")
+                }
+            }
+        }
+
+    }
 }
 
 dependencies {
