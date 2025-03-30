@@ -33,7 +33,7 @@ afterEvaluate {
             bar(MavenPublication) {
                 groupId = "com.github.emdelph619"
                 artifactId = "supportlibrary"
-                version = "1.0.0"
+                version = "1.0.1"
                 artifact("$buildDir/outputs/aar/supportlibrary-release.aar")
             }
         }
